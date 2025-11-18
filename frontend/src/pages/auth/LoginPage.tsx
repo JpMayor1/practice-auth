@@ -1,9 +1,9 @@
+import LoadingSmall from "@/components/custom/loading/LoadingSmall";
 import { useAuthStore } from "@/stores/auth/auth.store";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock, User } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingSmall from "../components/custom/loading/LoadingSmall";
 
 const LoginPage = () => {
   const { login, loading } = useAuthStore();

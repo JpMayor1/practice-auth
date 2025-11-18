@@ -1,7 +1,7 @@
+import LoadingSmall from "@/components/custom/loading/LoadingSmall";
 import { useAuthStore } from "@/stores/auth/auth.store";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import LoadingSmall from "../components/custom/loading/LoadingSmall";
 
 const HomePage = () => {
   const { logout, loading } = useAuthStore();
