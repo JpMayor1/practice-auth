@@ -1,4 +1,4 @@
-import { logoutApi, registerApi } from "@/api/auth/auth.api";
+import { loginApi, logoutApi, registerApi } from "@/api/auth/auth.api";
 import type { AuthStateType } from "@/types/auth/auth.type";
 import { showError } from "@/utils/error/error.util";
 import toast from "react-hot-toast";
@@ -16,7 +16,21 @@ export const useAuthStore = create<AuthStateType>((set) => ({
       toast.success(response.data.message);
       return true;
     } catch (error) {
-      console.error("Error registering in account", error);
+      console.error("Error registering account", error);
+      showError(error);
+      return false;
+    } finally {
+      set({ loading: false });
+    }
+  },
+  login: async (data) => {
+    set({ loading: true });
+    try {
+      const response = await loginApi(data);
+      toast.success(response.data.message);
+      return true;
+    } catch (error) {
+      console.error("Error logging in account", error);
       showError(error);
       return false;
     } finally {
