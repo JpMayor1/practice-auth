@@ -1,12 +1,16 @@
 import LoadingSmall from "@/components/custom/loading/LoadingSmall";
+import { useAccountStore } from "@/stores/account/account.store";
 import { useAuthStore } from "@/stores/auth/auth.store";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const { account } = useAccountStore();
   const { logout, loading } = useAuthStore();
 
   const navigate = useNavigate();
+
+  if (!account) return;
 
   async function logoutFunc() {
     await logout();
@@ -14,7 +18,8 @@ const HomePage = () => {
   }
 
   return (
-    <div className="h-full w-full flex items-center justify-center">
+    <div className="h-full w-full flex flex-col items-center justify-center gap-2">
+      <p>Hi {account.name}!</p>
       <button
         onClick={logoutFunc}
         disabled={loading}

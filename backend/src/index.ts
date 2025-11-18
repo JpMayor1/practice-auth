@@ -13,6 +13,7 @@ import initDB from "@/db/db.connect.js";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 
 import authRoute from "@/routes/auth/auth.route";
+import verifierRoute from "@/routes/verifier/verifier.route";
 
 const bootstrap = async () => {
   const app = express();
@@ -41,6 +42,7 @@ const bootstrap = async () => {
     res.status(200).send("API is running");
   });
 
+  app.use("/api/verifier", verifierRoute);
   app.use("/api/auth", authRoute);
 
   app.use(globalErrorHandler);

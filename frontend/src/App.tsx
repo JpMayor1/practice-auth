@@ -1,6 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./layouts/RootLayout";
+import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
+import UnAuthenticatedLayout from "./layouts/UnauthenticatedLayout";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LandingPage from "./pages/general/LandingPage";
@@ -10,7 +11,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout />,
+      element: <UnAuthenticatedLayout />,
       children: [
         {
           path: "/",
@@ -24,6 +25,12 @@ function App() {
           path: "/auth/register",
           element: <RegisterPage />,
         },
+      ],
+    },
+    {
+      path: "/home",
+      element: <AuthenticatedLayout />,
+      children: [
         {
           path: "/home",
           element: <HomePage />,

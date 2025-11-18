@@ -6,3 +6,9 @@ export type AccountType = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type AccountStoreType = {
+  account: AccountType | null;
+  loading: boolean;
+  verify: () => Promise<boolean>;
+};

@@ -55,6 +55,7 @@ const LoginPage = () => {
               required
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
+              autoComplete=""
               className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-100 border border-gray-300 text-gray-900 focus:ring-2 focus:ring-primary outline-none"
             />
           </motion.div>
@@ -76,6 +77,7 @@ const LoginPage = () => {
               required
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
+              autoComplete=""
               className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-100 border border-gray-300 text-gray-900 focus:ring-2 focus:ring-primary outline-none"
             />
           </motion.div>
