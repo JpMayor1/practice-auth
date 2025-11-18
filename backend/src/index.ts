@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import csrf from "csurf";
 import express from "express";
+import mongoSanitize from "express-mongo-sanitize";
 import http from "http";
 import morgan from "morgan";
 
@@ -49,6 +50,9 @@ const bootstrap = async () => {
 
   // JSON parser
   app.use(express.json());
+
+  // Prevent NoSQL Injection
+  app.use(mongoSanitize());
 
   // Cookie parser
   app.use(cookieParser());
