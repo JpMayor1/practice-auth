@@ -26,18 +26,20 @@ const bootstrap = async () => {
 
   const PORT = process.env.PORT || 5000;
   const allowedOrigins = process.env.FRONTEND_URLS
-    ? JSON.parse(process.env.FRONTEND_URLS)
+    ? process.env.FRONTEND_URLS.split(",")
     : [];
 
   // CORS
   app.use(
     cors({
       origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error("CORS not allowed"), false);
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+          return callback(null, true);
         }
+
+        // Reject everything else
+        callback(new Error("CORS not allowed"), false);
       },
       credentials: true,
     })

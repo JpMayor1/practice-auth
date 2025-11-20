@@ -8,10 +8,13 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "docker:build": "docker build -t auth-frontend .",
+    "docker:tag": "docker tag auth-frontend jamesdocker11/auth-frontend:latest",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:restart": "npm run docker:down && npm run docker:up",
-    "docker:logs": "docker compose logs -f backend"
+    "docker:logs": "docker compose logs -f frontend",
+    "docker:push": "npm run docker:build && npm run docker:tag && docker push jamesdocker11/auth-frontend:latest"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",

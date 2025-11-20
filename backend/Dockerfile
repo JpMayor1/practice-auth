@@ -1,35 +1,35 @@
-# Stage 1 — Builder
-FROM node:18.20-alpine AS builder
+# ---------- Stage 1 — Builder ----------
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files first
+# Install all dependencies
 COPY package.json package-lock.json ./
-
-# Install ALL deps
 RUN npm ci
 
-# Copy the rest of the backend
+# Copy source code
 COPY . .
 
-# Build with esbuild
+# Build using esbuild
 RUN npm run build
 
 
-# Stage 2 — Production Image
+# ---------- Stage 2 — Production Image ----------
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy the build output
-COPY --from=builder /app/bundle/ ./bundle/
+# Copy production build
+COPY --from=builder /app/bundle ./bundle
 
-# Copy package files again
+# Copy package.json & lockfile
 COPY package.json package-lock.json ./
 
-# Install prod dependencies only
+# Install production deps only
 RUN npm ci --omit=dev
 
-EXPOSE 5000
+# Expose API port
+EXPOSE 5001
 
+# Run backend
 CMD ["node", "bundle/index.js"]

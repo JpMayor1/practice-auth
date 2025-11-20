@@ -7,10 +7,13 @@
     "build": "node esbuild.config.mjs",
     "start": "node bundle/index.js",
     "typecheck": "tsc --noEmit",
+    "docker:build": "docker build -t auth-backend .",
+    "docker:tag": "docker tag auth-backend jamesdocker11/auth-backend:latest",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:restart": "npm run docker:down && npm run docker:up",
-    "docker:logs": "docker compose logs -f backend"
+    "docker:logs": "docker compose logs -f backend",
+    "docker:push": "npm run docker:build && npm run docker:tag && docker push jamesdocker11/auth-backend:latest"
   },
   "keywords": [],
   "author": "",
