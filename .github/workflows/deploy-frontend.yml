@@ -16,6 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Create .env.production
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./frontend/.env.production
+
       # ---- Build and Push Frontend Image ----
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
