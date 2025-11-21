@@ -7,7 +7,7 @@
     "build": "node esbuild.config.mjs",
     "start": "node bundle/index.js",
     "typecheck": "tsc --noEmit",
-    "docker:build": "docker build -t auth-backend .",
+    "docker:build": "docker build --no-cache -t auth-backend .",
     "docker:tag": "docker tag auth-backend jamesdocker11/auth-backend:latest",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",

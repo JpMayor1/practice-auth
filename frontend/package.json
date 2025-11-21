@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "docker:build": "docker build -t auth-frontend .",
+    "docker:build": "docker build --no-cache -t auth-frontend .",
     "docker:tag": "docker tag auth-frontend jamesdocker11/auth-frontend:latest",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
